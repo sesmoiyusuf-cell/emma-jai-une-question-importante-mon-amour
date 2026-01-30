@@ -3,40 +3,64 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Emma</title>
+<title>Emma ❤️</title>
 
 <style>
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #0b0b0f;
-  font-family: 'Georgia', serif;
-  color: #f5f5f5;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe6ee, #fff0f5);
+  font-family: Georgia, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 700px;
   text-align: center;
+  max-width: 700px;
+  padding: 30px;
 }
 
-.line {
-  font-size: 32px;
-  line-height: 1.6;
-  opacity: 0;
-  margin: 20px 0;
-  transition: opacity 2s ease;
-}
-
-.title {
+h1 {
   font-size: 48px;
-  margin-bottom: 40px;
+  color: #c2185b;
+}
+
+p {
+  font-size: 26px;
+  color: #444;
+  min-height: 120px;
+}
+
+button {
+  margin-top: 30px;
+  padding: 18px 40px;
+  font-size: 22px;
+  border: none;
+  border-radius: 30px;
+  background: #ff5fa2;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff4081;
+}
+
+/* cœurs qui montent */
+.heart {
+  position: absolute;
+  bottom: -40px;
+  font-size: 30px;
+  animation: float 10s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
 }
 </style>
 </head>
@@ -44,46 +68,51 @@ html, body {
 <body>
 
 <div class="container">
-  <div id="t" class="line title">Emma</div>
-  <div id="l1" class="line">Il y a des choses…</div>
-  <div id="l2" class="line">qu’on ne dit pas tout de suite.</div>
-  <div id="l3" class="line">Pas parce qu’elles sont compliquées.</div>
-  <div id="l4" class="line">Mais parce qu’elles comptent.</div>
-  <div id="l5" class="line">Parce qu’elles viennent du cœur.</div>
-  <div id="l6" class="line">Et quand on les dit…</div>
-  <div id="l7" class="line">on espère juste être compris.</div>
-  <div id="l8" class="line"><strong>Alors j’ai une question.</strong></div>
-  <div id="l9" class="line"><strong>Veux-tu être ma Valentine ?</strong></div>
+  <h1>Emma ❤️</h1>
+  <p id="text">J’ai quelque chose à te dire…</p>
+  <button onclick="next()">Continuer 💕</button>
 </div>
 
 <audio id="music">
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/09/audio_1c8d6cfc58.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c2c6f7a6f.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const timing = [
-  ["t", 500],
-  ["l1", 2500],
-  ["l2", 4500],
-  ["l3", 6500],
-  ["l4", 8500],
-  ["l5", 10500],
-  ["l6", 12500],
-  ["l7", 14500],
-  ["l8", 17000],
-  ["l9", 20000]
-];
+let step = 0;
+const text = document.getElementById("text");
+const music = document.getElementById("music");
 
-timing.forEach(([id, delay]) => {
-  setTimeout(() => {
-    document.getElementById(id).style.opacity = 1;
-  }, delay);
-});
+function next() {
+  step++;
 
-// musique au premier tap (iPhone)
-document.body.addEventListener("click", () => {
-  document.getElementById("music").play();
-}, { once: true });
+  // musique démarre AU PREMIER CLIC (iPhone OK)
+  if (step === 1) {
+    music.play();
+  }
+
+  if (step === 1) {
+    text.innerHTML = "Avant tout, je voulais te dire que tu comptes beaucoup pour moi.";
+  }
+  else if (step === 2) {
+    text.innerHTML = "Ta présence rend mes journées plus légères et mes sourires plus vrais.";
+  }
+  else if (step === 3) {
+    text.innerHTML = "Et depuis un moment… j’avais cette question dans le cœur.";
+  }
+  else if (step === 4) {
+    text.innerHTML = "<strong>Veux-tu être ma Valentine ? 💖</strong>";
+  }
+}
+
+// cœurs en arrière-plan
+for (let i = 0; i < 20; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (6 + Math.random() * 6) + "s";
+  document.body.appendChild(h);
+}
 </script>
 
 </body>
