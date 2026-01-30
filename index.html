@@ -2,182 +2,117 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Pour Emma ❤️</title>
+<title>Emma 💖</title>
 
 <style>
 body {
   margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  color: white;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(#fff0f5, #ffe4e1);
+  border: 25px solid pink;
+  border-image: url("https://i.imgur.com/4M7IWwP.png") 30 round;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1 {
+  margin-top: 40px;
+  color: #c2185b;
+  animation: fadeIn 2s;
 }
 
 .step {
   display: none;
-  text-align: center;
-  max-width: 800px;
-  padding: 20px;
-  animation: fadeIn 1.5s ease;
-}
-
-.step.active {
-  display: block;
-}
-
-h1 {
-  font-size: 3em;
-}
-
-p {
-  font-size: 1.5em;
-  line-height: 1.6;
+  padding: 30px;
+  animation: fadeIn 1.5s;
 }
 
 button {
-  margin-top: 30px;
-  padding: 15px 35px;
-  font-size: 1.2em;
+  padding: 15px 30px;
+  font-size: 18px;
   border: none;
   border-radius: 30px;
-  background: white;
-  color: #ff5f7e;
+  background: #ff69b4;
+  color: white;
   cursor: pointer;
-  transition: transform 0.3s;
+  margin: 20px;
+  animation: pulse 2s infinite;
 }
 
 button:hover {
-  transform: scale(1.1);
-}
-
-.heart {
-  position: absolute;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-  opacity: 0.7;
+  background: #ff1493;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes float {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 MUSIQUE -->
+<h1>Emma, j’ai une question importante mon amour 💕</h1>
+
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5a6c9f8a36.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ÉTAPE 1 -->
-<div class="step active">
-  <h1>Emma ❤️</h1>
-  <p>Avant tout… j’aimerais que tu prennes un instant.</p>
-  <button onclick="start()">Continuer ✨</button>
+<div id="step1" class="step" style="display:block;">
+  <p>Avant de te poser cette question… laisse-moi te dire quelque chose 💖</p>
+  <button onclick="nextStep(2)">Continuer</button>
 </div>
 
-<!-- ÉTAPE 2 -->
-<div class="step">
-  <h1>Depuis le début…</h1>
+<div id="step2" class="step">
+  <p>Chaque jour avec toi est un cadeau que je n’échangerais pour rien au monde 🌹</p>
+  <button onclick="nextStep(3)">Continuer</button>
+</div>
+
+<div id="step3" class="step">
+  <p>Ton sourire illumine mes journées, ton regard apaise mon cœur ✨</p>
+  <button onclick="nextStep(4)">Continuer</button>
+</div>
+
+<div id="step4" class="step">
+  <p>Alors maintenant… écoute bien, parce que ça vient du plus profond de moi ❤️</p>
+  <button onclick="playMusic(); nextStep(5)">Continuer</button>
+</div>
+
+<div id="step5" class="step">
+  <h2>Mon amour,</h2>
   <p>
-    Il y a des personnes qui arrivent dans une vie sans faire de bruit,
-    mais qui changent tout.<br><br>
-    Toi, tu as apporté des sourires, de la douceur,
-    et quelque chose que je n’avais jamais vraiment ressenti avant.
+  Depuis que tu es entrée dans ma vie, tout a changé.<br><br>
+  Tu es devenue mon refuge, mon sourire dans les moments difficiles,  
+  la personne à qui je pense en me réveillant et avant de dormir.<br><br>
+  J’aime la douceur de ta voix, la beauté de ton cœur,  
+  et la façon dont tu rends le monde plus beau simplement en étant toi.<br><br>
+  Je ne te promets pas la perfection,  
+  mais je te promets un amour sincère, fidèle et profond.<br><br>
+  Alors aujourd’hui, avec tout ce que je ressens pour toi…  
+  j’ai une question à te poser 💍
   </p>
-  <button onclick="next()">Je continue 💕</button>
-</div>
 
-<!-- ÉTAPE 3 -->
-<div class="step">
-  <h1>Ce que je ressens</h1>
-  <p>
-    Chaque pensée te concernant me rassure.<br>
-    Chaque moment avec toi compte.<br><br>
-    Tu es devenue quelqu’un d’important,
-    quelqu’un que je veux choisir, encore et encore.
-  </p>
-  <button onclick="next()">Encore… 💖</button>
-</div>
+  <h1>Veux-tu continuer ta vie avec moi ? 💖</h1>
 
-<!-- ÉTAPE 4 -->
-<div class="step">
-  <h1>Alors j’ai une question…</h1>
-  <p>
-    Une question sincère.<br>
-    Une question qui vient du cœur.
-  </p>
-  <button onclick="next()">Je suis prête ❤️</button>
-</div>
-
-<!-- ÉTAPE 5 -->
-<div class="step">
-  <h1>Emma, mon amour 💍</h1>
-  <p style="font-size:1.4em">
-    Je ne te promets pas la perfection.<br><br>
-
-    Mais je te promets d’être là.<br>
-    De t’écouter.<br>
-    De te respecter.<br>
-    De te soutenir dans les bons comme dans les mauvais moments.<br><br>
-
-    Je te promets des rires,
-    des souvenirs,
-    des regards qui disent tout sans parler.<br><br>
-
-    Je choisis tes défauts autant que tes qualités,
-    ta douceur comme ta force,
-    ton sourire comme tes silences.<br><br>
-
-    Ce que je ressens pour toi est réel,
-    profond,
-    et sincère.<br><br>
-
-    <strong>
-      Est-ce que tu veux avancer avec moi,
-      main dans la main,
-      et écrire notre histoire ensemble ? ❤️
-    </strong>
-  </p>
+  <button onclick="alert('Je t’aime ❤️')">OUI 💍</button>
+  <button onclick="alert('Je t’aimerai quand même ❤️')">OUI aussi 😘</button>
 </div>
 
 <script>
-let index = 0;
-const steps = document.querySelectorAll('.step');
-const music = document.getElementById('music');
-
-function start() {
-  music.play();
-  next();
+function nextStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.style.display = 'none');
+  document.getElementById('step' + n).style.display = 'block';
 }
 
-function next() {
-  steps[index].classList.remove('active');
-  index++;
-  steps[index].classList.add('active');
+function playMusic() {
+  document.getElementById('music').play();
 }
-
-// Cœurs animés
-setInterval(() => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerHTML = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 400);
 </script>
 
 </body>
